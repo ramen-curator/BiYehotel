@@ -1,0 +1,27 @@
+extends layout
+
+block content
+
+  h1 住客： #{author.name}
+  p 身份： #{author.identity}
+  p 手机号： #{author.personal_profile}
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 住客的房间
+
+    dl
+    each article in article_list
+      dt 
+        a(href=article.url) #{article.title}
+      dd
+        p #{article.summary}
+
+    else
+      p 这个住客没有住房。
+  
+  hr
+  p
+    a(href=author.url+'/delete') 删除住客
+  p
+    a(href=author.url+'/update') 更新住客

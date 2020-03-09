@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1 #{title}: #{article.title}
+  p 住客：
+    a(href=article.author.url) #{article.author.name}
+    if article.author.identity=='管理员'
+      span.text-danger (#{article.author.identity})
+      |【未有客户入住】
+    else
+      span.text-success (住客)
+      |【住人了】
+  p 类型：&nbsp;
+    each val, index in article.genre
+      a(href=val.url) #{val.name}
+      if index < article.genre.length - 1
+        |, 
+  p 房间简介：
+    p #{article.summary}
+  p 你真的想删除此房间吗？
+    
+  form(method='POST' action='')
+    div.form-group
+      input#articleid.form-control(type='hidden',name='articleid', required='true', value=article._id )
+      label(for='password') 口令:
+      input#password.form-control(type='password' placeholder='口令' name='password' required='true')
+    button.btn.btn-primary(type='submit') 删除
+
+  ul
+  if input_err
+    li input_err    

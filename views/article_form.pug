@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='title') 房名:
+      input#title.form-control(type='text', placeholder='房间名字' name='title' required='true' value=(undefined===(a_title && article) ? '' : (undefined===a_title ? article : a_title) ))
+    div.form-group
+      label(for='content') 房号:
+      p
+        input#content(type='text' name='content',placeholder='房号' value=(undefined===(a_content && article) ? '' : (undefined===a_content ? article : a_content)) required='true') 
+    div.form-group
+      label(for='name') 住客昵称:
+      input#name.form-control(type='text', name='name' required='true')
+    div.form-group
+      label(for='password') 住客口令:
+      input#password.form-control(type='password', name='password' required='true')
+    div.form-group
+      label 类型:
+      div
+        for genre in genres
+          div(style='display: inline; padding-right:10px;')
+            input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id, checked=genre.checked )
+            label(for=genre._id) #{genre.name}
+    div.form-group
+      label(for='summary') 房间简介:
+      p
+        input#summary.form-control(type='text' name='summary',placeholder='房间简介' value=(undefined===(a_summary && article) ? '' : (undefined===a_summary ? article : a_summary))) 
+
+
+    button.btn.btn-primary(type='submit') 提交
+ 
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg
+  if input_err
+    ul
+      li #{input_err}

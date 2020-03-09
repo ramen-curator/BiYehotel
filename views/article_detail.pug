@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1 #{title}：#{article.title}
+  p #[strong 房号：]
+    p #{article.content}
+  p #[strong 住客：] 
+    a(href=article.author.url) #{article.author.name}
+    if article.author.identity=='管理员'
+      span.text-danger (#{article.author.identity})
+      |【未有客户住入】
+    else
+      span.text-success (住客)
+      |【住人了】
+  p #[strong 类型：]&nbsp;
+    if article.genre
+      each val, index in article.genre
+        a(href=val.url) #{val.name}
+        if index < article.genre.length - 1
+          |, 
+  p #[strong 房间简介：]
+    if article.summary
+      | #{article.summary}
+
+  
+
+  hr
+  p
+    a(href=article.url+'/delete') 删除房间
+  p
+    a(href=article.url+'/update') 更新房间
