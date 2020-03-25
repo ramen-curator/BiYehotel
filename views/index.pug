@@ -2,4 +2,20 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p 欢迎来到#[em 酒店管理系统]！
+
+  h1 实时内容
+
+  if error
+    p 获取实时内容失败.
+  else
+    p 此图书馆当前记录数量:
+
+    ul
+      li #[strong 房间种类:] !{data.room_count} 
+      li #[strong 具体房间:] !{data.realyroom_count}
+      li #[strong 空闲的具体房间:] !{data.realyroom_available_count} 
+      li #[strong 用户数量:] !{data.user_count}
+      li #[strong 房间类型:] !{data.genre_count}
+  p 若要预定房间，请联系管理员：手机号码xxxx
+  p 本酒店的地址：xxxx

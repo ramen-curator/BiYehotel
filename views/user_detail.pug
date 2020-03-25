@@ -1,0 +1,28 @@
+extends layout
+ 
+block content
+
+  h1 用户： #{user.name}
+  p 身份：
+    if user.status=='管理员'
+      span.text-danger #{user.status}
+    else 
+      span.text-success #{user.status} 
+  p 联系方式：#{user.phonenumber}
+
+  div(style='margin-left:20px;margin-top:20px')
+    h4 具体房间
+    dl
+    each realyroom in user_realyrooms
+      dt 
+        a(href=realyroom.url) #{realyroom.room.name} - 
+        | #{realyroom.roomnumber}
+      dd #{realyroom.room.summary}
+    else
+      p 这里没有这个用户住着的具体房间。
+  
+  hr
+  p
+    a(href=user.url+'/yesdelete') 删除
+  p
+    a(href=user.url+'/yesupdate') 更新

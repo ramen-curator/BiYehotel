@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='room') 房间种类:
+      select#room.form-control(type='select' placeholder='选择房间种类' name='room' required='true')
+        for room in rooms
+          if realyroom
+            option(value=room._id selected=(realyroom.room.toString()==room._id.toString() ? 'selected' : false)) #{room.name}
+          else
+            option(value=room._id) #{room.name}        
+      label(for='roomnumber') 房间号:
+      input#roomnumber.form-control(type='text' name='roomnumber' value=(undefined===realyroom ? '' : realyroom.roomnumber) )
+    div.form-group
+      label(for='situation') 具体房间状态:
+      select#situation.form-control(type='select' placeholder='选择房间状态' name='situation' required='true')
+        option(value='已住人') 已住人
+        option(value='空闲') 空闲
+        option(value='维护') 维护
+        option(value='保留') 保留
+
+    div.form-group
+      label(for='dateend') 截止日期:
+      input#dateend.form-control(type='date' name='dateend' value=(undefined===realyroom ? '' : realyroom.dateend))
+
+    div.form-group
+      label(for='user') 住着的用户:
+      select#user.form-control(type='select' placeholder='住着的用户' name='user' required='true')
+        for user in users
+          if realyroom
+            option(value=user._id selected=(realyroom.user.toString()==user._id.toString() ? 'selected' : false)) #{user.name}
+          else
+            option(value=user._id) #{user.name}        
+
+    button.btn.btn-primary(type='submit') 提交
+
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg

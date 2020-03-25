@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+  each room in room_list
+    li 
+      a(href=room.url) #{room.name} 
+      each genre in room.genre
+        |  #{genre.name}  
+
+  else
+    li 没有房间种类。

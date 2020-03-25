@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 #{title}: #{realyroom.room.name}
+  p 房间号：#{realyroom.roomnumber}
+  p 房间状态：#{realyroom.situation}
+  p 截止日期：#{realyroom.dateend_f}
+  p 住着的用户：#{realyroom.user.name}
+
+    p 你真的想删除此具体房间吗？
+    
+    form(method='POST' action='')
+      div.form-group
+        input#realyroomid.form-control(type='hidden',name='realyroomid', required='true', value=realyroom._id )
+
+      button.btn.btn-primary(type='submit') 删除

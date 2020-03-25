@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+  each val in realyroom_list
+    li 
+      a(href=val.url) #{val.room.name} - 
+      if val.situation=='空闲'
+        span.text-success #{val.situation}
+      else if val.situation=='已住人'
+        span.text-danger #{val.situation}
+      else
+        span.text-warning #{val.situation} 
+      if val.situation!='空闲'
+        span  (截止日期: #{val.dateend_f} )
+
+  else
+    li 酒店内没有具体房间。

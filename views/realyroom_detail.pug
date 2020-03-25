@@ -1,0 +1,27 @@
+extends layout
+
+block content
+
+  h1 ID: #{realyroom._id}
+  
+  p #[strong 房间名：] 
+    a(href=realyroom.room.url) #{realyroom.room.name}
+  p #[strong 房间号：] #{realyroom.roomnumber}
+
+  p #[strong 房间状态：] 
+    if realyroom.situation=='空闲'
+      span.text-success #{realyroom.situation}
+    else if realyroom.situation=='已住人'
+      span.text-danger #{realyroom.situation}
+    else
+      span.text-warning #{realyroom.situation} 
+      
+  if realyroom.situation!='空闲'
+    p #[strong 截止日期：] #{realyroom.dateend_f}
+
+  block OK
+  hr
+  p
+    a(href=realyroom.url+'/yesdelete') 删除
+  p
+    a(href=realyroom.url+'/yesupdate') 更新

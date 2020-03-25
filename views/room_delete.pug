@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1 #{title}: #{room.name}
+
+  
+  if room_realyrooms.length
+  
+    p #[strong 尝试删除此房间种类之前，请删除以下具体房间。]
+  
+    div(style='margin-left:20px;margin-top:20px')
+
+      h4 具体房间
+    
+      dl
+      each realyroom in room_realyrooms
+        dt 
+          a(href=realyroom.url) #{realyroom.room.name} - #{realyroom.roomnumber}
+        dd #{realyroom.room.summary}
+
+  else
+    p 你真的想删除此房间种类吗？
+    
+    form(method='POST' action='')
+      div.form-group
+        input#roomid.form-control(type='hidden',name='roomid', required='true', value=room._id )
+
+      button.btn.btn-primary(type='submit') 删除

@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  h1=title
+
+  if create
+    form(method='POST' action='')
+      div.form-group
+        label(for='name') 用户名:
+        input#name.form-control(type='text' placeholder='用户名（郭德纲）' name='name' required='true' value=(undefined===user ? '' : user.name) )
+      div.form-group
+        label(for='password') 用户口令:
+        input#password.form-control(type='password' name='password' value=(undefined===user ? '' : user.password) )
+        label(for='phonenumber') 手机号码:
+        input#phonenumber.form-control(type='text' name='phonenumber' value=(undefined===user ? '' : user.phonenumber) )
+        label(for='status') 特殊口令:
+        input#status.form-control(type='password' name='status' value=(undefined===user ? '' : user.status) )
+      button.btn.btn-primary(type='submit') 提交
+  else
+    form(method='POST' action=user.url+'/update')
+      div.form-group
+        label(for='name') 用户名:
+        input#name.form-control(type='text' placeholder='用户名（郭德纲）' name='name' required='true' value=(undefined===user ? '' : user.name) )
+      div.form-group
+        if yes
+          label(for='password') 用户口令:
+          input#password.form-control(type='password' name='password' value=(undefined===user ? '' : user.password) )
+        else
+          label(for='password') 用户口令:
+          input#password.form-control(type='hidden' name='password' value=(undefined===user ? '' : user.password) )
+        label(for='phonenumber') 手机号码:
+        input#phonenumber.form-control(type='text' name='phonenumber' value=(undefined===user ? '' : user.phonenumber) )
+        label(for='status') 特殊口令:
+        input#status.form-control(type='password' name='status' value=(undefined===user ? '' : user.status) )
+      button.btn.btn-primary(type='submit') 提交
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg
+        

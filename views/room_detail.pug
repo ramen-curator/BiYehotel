@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  h1 #{title}：#{room.name}
+
+  p #[strong 房间简介：] #{room.summary}
+  p #[strong 类型：]&nbsp;
+    each val, index in room.genre
+      a(href=val.url) #{val.name}
+      if index < room.genre.length - 1
+        |, 
+
+  div(style='margin-left:20px;margin-top:20px')
+    h4 具体房间
+    
+    each val in realyrooms
+      hr
+      if val.situation=='空闲'
+        p.text-success #{val.situation}
+      else if val.situation=='已住人'
+        p.text-danger #{val.situation}
+      else
+        p.text-warning #{val.situation} 
+      if val.situation!='空闲'
+        p #[strong 截止日期：] #{val.dateend_f}
+      p #[strong ID：]&nbsp;
+        a(href=val.url) #{val._id}
+ 
+    else
+      p 酒店里没有这个房间种类的具体房间。
+  
+  hr
+  p
+    a(href=room.url+'/yesupdate') 更新
+  p
+    a(href=room.url+'/yesdelete') 删除

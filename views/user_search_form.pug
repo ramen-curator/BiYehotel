@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      input#myswitch.form-control(type='hidden',name='myswitch', required='true', value='search' )
+      label(for='name') 用户名:
+      input#name.form-control(type='text' placeholder='用户名（郭德纲）' name='name' required='true' value=(undefined===user ? '' : user.name) )
+      label(for='phonenumber') 手机号码:
+      input#phonenumber.form-control(type='text' name='phonenumber' value=(undefined===user ? '' : user.phonenumber) )
+
+    button.btn.btn-primary(type='submit') 提交
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg
+  if errorno
+    ul
+      li #{errorno}
+        

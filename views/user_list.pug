@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+  each user in user_list
+    li 
+      a(href=user.url) #{user.name} -
+      if user.status=='管理员'
+        span.text-danger #{user.status}
+      else 
+        span.text-success #{user.status}
+      
+
+  else
+    li 没有用户。

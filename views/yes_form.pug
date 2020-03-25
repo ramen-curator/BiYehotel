@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='/catalog/yes')
+    div.form-group
+      input#myswitch.form-control(type='hidden',name='myswitch', required='true', value=myswitch )
+      label(for='password') 口令:
+      input#password.form-control(type='password' name='password' value=(undefined===user ? '' : user.password) )
+      if thisuserid
+        input#thisuserid.form-control(type='hidden',name='thisuserid', required='true', value=thisuserid )
+      if theid
+        input#theid.form-control(type='hidden',name='theid', required='true', value=theid )
+ 
+    button.btn.btn-primary(type='submit') 提交
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg
+  if errorno
+    ul
+      li #{errorno}
+        

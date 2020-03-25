@@ -1,24 +1,15 @@
 extends layout
 
 block content
-  h1=title
+  h1 #{title}
+  
+  form(method='POST' action='')
+    div.form-group
+      label(for='name') 房间类型:
+      input#name.form-control(type='text', placeholder='单人床、双人床等。' name='name' value=(undefined===genre ? '' : genre.name))
+    button.btn.btn-primary(type='submit') 提交
 
-  if fine != true
-    form(method='POST' action='')
-      div.form-group
-        label(for='v_password') 口令:
-        input#v_password.form-control(type='password' placeholder='管理员的口令' name='v_password' required='true')
-      button.btn.btn-primary(type='submit') 提交
-  else
-   form(method='POST' action='')
-      div.form-group
-        label(for='name') 类型名字:
-        input#name.form-control(type='text', placeholder='类型名字' name='name' required='true' value=(undefined===genre ? '' : genre.name))
-      button.btn.btn-primary(type='submit') 提交
   if errors 
     ul
       for error in errors
         li!= error.msg
-  if input_err
-    ul
-      li #{input_err}

@@ -17,19 +17,25 @@ html(lang='zh-cn')
               li 
                 a(href='/catalog') 首页
               li 
-                a(href='/catalog/articles') 所有房间
+                a(href='/catalog/rooms') 所有房间种类
               li 
-                a(href='/catalog/authors') 所有用户
+                a(href='/catalog/yesusers') 所有用户
               li 
-                a(href='/catalog/genres') 所有类型              
+                a(href='/catalog/genres') 所有房间类型
+              li 
+                a(href='/catalog/realyrooms') 所有具体房间
               li 
                 hr
               li 
-                a(href='/catalog/article/create') 创建新房间
+                a(href='/catalog/user/create') 创建新用户
               li 
-                a(href='/catalog/author/create') 创建新用户
+                a(href='/catalog/genre/yescreate') 创建新房间类型
+              li 
+                a(href='/catalog/room/yescreate') 创建新房间种类
+              li 
+                a(href='/catalog/realyroom/yescreate') 创建新具体房间
               li
-                a(href='/catalog/genre/create') 创建新类型
-                
+                hr
+                a(href='/catalog/user/search') 查找用户
         div(class='col-sm-10')
           block content

@@ -2,29 +2,23 @@ extends layout
 
 block content
 
-  h1 类型： #{genre.name}
+  h1 房间类型: #{genre.name}
   
   div(style='margin-left:20px;margin-top:20px')
 
-    h4 该类型的房间
-
+    h4 房间种类
+    
     dl
-    each article in article_list
+    each room in genre_rooms
       dt 
-        a(href=article.url) #{article.title} - 
-        | #{article.author.name} 
-        if article.author.identity=='管理员'
-          span.text-danger (#{article.author.identity})
-        else
-          span.text-success (住客)
-      dd
-        p #{article.summary}
-      
+        a(href=room.url) #{room.name}
+      dd #{room.summary}
+
     else
-      p 这里没有这个类型的房间。
-  
+      p 没有这个房间类型的房间种类
+
   hr
   p
-    a(href=genre.url+'/delete') 删除类型
+    a(href=genre.url+'/yesupdate') 更新
   p
-    a(href=genre.url+'/update') 更新类型
+    a(href=genre.url+'/yesdelete') 删除

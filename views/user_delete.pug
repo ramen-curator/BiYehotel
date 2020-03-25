@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1 #{title}: #{user.name}
+
+  
+  if user_realyrooms.length
+  
+    p #[strong 尝试删除此用户之前，请删除以下具体房间。]
+  
+    div(style='margin-left:20px;margin-top:20px')
+
+      h4 住的具体房间
+    
+      dl
+      each realyroom in user_realyrooms
+        dt 
+          a(href=realyroom.url) #{realyroom.room.name} - #{realyroom.roomnumber}
+        dd #{realyroom.room.summary}
+
+  else
+    p 你真的想删除此用户吗？
+    
+    form(method='POST' action='')
+      div.form-group
+        input#userid.form-control(type='hidden',name='userid', required='true', value=user._id )
+
+      button.btn.btn-primary(type='submit') 删除
